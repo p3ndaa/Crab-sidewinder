@@ -1,0 +1,100 @@
+# Using Google Drive Images
+
+## Quick Guide: How to Get a Google Drive Image URL
+
+### Step 1: Upload to Google Drive
+1. Go to [Google Drive](https://drive.google.com)
+2. Upload your image file
+3. Right-click the image → **Get link**
+4. Set permissions to **"Anyone with the link"** can view
+5. Click **Copy link**
+
+### Step 2: Convert the URL
+Google Drive links look like this:
+```
+https://drive.google.com/file/d/1ABC123xyz/view?usp=sharing
+```
+
+You need to convert it to a direct image URL. Extract the **FILE_ID** (the part between `/d/` and `/view`).
+
+**Original URL:**
+```
+https://drive.google.com/file/d/1ABC123xyz/view?usp=sharing
+```
+
+**Convert to:**
+```
+https://drive.google.com/uc?export=view&id=1ABC123xyz
+
+https://drive.google.com/uc?export=view&id=1uxZtQ8XbWQ20znowBlCbwOdbXmX09NUq
+```
+
+### Step 3: Use in Your Portfolio
+
+#### For Profile Image:
+1. Open `app/page.tsx`
+2. Find line 44: `src="/profile.jpg"`
+3. Replace with your Google Drive URL:
+   ```typescript
+   src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID"
+   ```
+
+#### For Project Images in Supabase:
+Use the converted URL directly in your `image_url` field:
+```
+https://drive.google.com/uc?export=view&id=YOUR_FILE_ID
+```
+
+---
+
+## Alternative: Use Google Photos Link
+
+If you're using Google Photos, the direct link format is:
+```
+https://lh3.googleusercontent.com/...
+```
+
+This format works directly without conversion!
+
+---
+
+## Supported Image Hosts
+
+Your portfolio now supports images from:
+- ✅ Google Drive (`drive.google.com`)
+- ✅ Google User Content (`lh3.googleusercontent.com`)
+- ✅ Catbox (`files.catbox.moe`)
+- ✅ Supabase Storage (`*.supabase.co`)
+- ✅ Unsplash (`images.unsplash.com`)
+- ✅ Local files in `public/` folder
+
+---
+
+## Example
+
+**Google Drive File ID:** `1ABC123xyz`
+
+**Use this URL:**
+```
+https://drive.google.com/uc?export=view&id=1ABC123xyz
+```
+
+**In code:**
+```typescript
+<img src="https://drive.google.com/uc?export=view&id=1ABC123xyz" alt="Profile" />
+```
+
+---
+
+## Troubleshooting
+
+**Image not loading:**
+- Make sure the file is set to "Anyone with the link can view"
+- Verify you're using the converted URL format (`/uc?export=view&id=...`)
+- Check that the FILE_ID is correct
+- Restart the dev server after updating `next.config.ts`
+
+**Still not working:**
+- Try using the `lh3.googleusercontent.com` link if available
+- Upload to Supabase Storage as an alternative
+- Use the local `public/` folder method

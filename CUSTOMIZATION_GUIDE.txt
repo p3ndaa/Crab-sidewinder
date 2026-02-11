@@ -1,0 +1,213 @@
+# Portfolio Customization Guide
+
+This guide will help you customize your portfolio website with your own content.
+
+## 📝 Text Content Updates
+
+### 1. Hero Section (Main Heading)
+**File:** `app/page.tsx`
+**Lines:** 30-36
+
+```typescript
+<h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+  Building Digital <br className="hidden md:inline" />
+  <span className="text-zinc-500">Excellence.</span>
+</h1>
+<p className="mt-6 max-w-[700px] text-lg text-zinc-600 dark:text-zinc-400 md:text-xl">
+  I craft high-performance digital experiences with a focus on precision,
+  aesthetics, and scalability.
+</p>
+```
+
+**What to change:**
+- Replace "Building Digital Excellence." with your own tagline
+- Update the description paragraph with your value proposition
+
+---
+
+### 2. Profile Image
+**File:** `public/profile.jpg`
+
+**What to do:**
+1. Prepare a professional photo of yourself (square/portrait orientation works best)
+2. Save it as `profile.jpg`
+3. Place it in the `public` folder: `d:\Careers\workspace-portfolio\public\profile.jpg`
+
+**Tips:**
+- Use a high-quality image (at least 800x800px)
+- Square aspect ratio looks best
+- Professional headshot or casual professional photo
+- Good lighting and clear background
+
+**Alternative:** If you want to use a different filename or format:
+- Open `app/page.tsx`
+- Find line 44: `src="/profile.jpg"`
+- Change to your filename: `src="/your-photo.png"`
+
+---
+
+### 3. About Me Section
+**File:** `components/About.tsx`
+**Lines:** 14-26
+
+**What to change:**
+- **Paragraph 1 (Lines 14-18):** Your introduction and expertise
+- **Paragraph 2 (Lines 19-23):** Your journey and skills
+- **Paragraph 3 (Lines 24-26):** Your interests/hobbies
+
+**Skills List (Lines 32-34):**
+```typescript
+{['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS', 'PostgreSQL'].map((skill) => (
+```
+Replace the array with your own skills: `['Python', 'Django', 'AWS', ...]`
+
+---
+
+### 4. Contact Section
+**File:** `components/Contact.tsx`
+**Lines:** 11-14
+
+**What to change:**
+- Update the intro text to match your personality
+
+**Social Links (Lines 16-42):**
+- **GitHub:** Line 17 - Replace `https://github.com/yourusername`
+- **LinkedIn:** Line 27 - Replace `https://linkedin.com/in/yourprofile`
+- **Email:** Line 37 - Replace `your.email@example.com`
+
+---
+
+### 5. Header Navigation
+**File:** `components/Header.tsx`
+**Lines:** 9-11
+
+```typescript
+<span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+  Portfolio
+</span>
+```
+
+**What to change:**
+- Replace "Portfolio" with your name or brand
+
+---
+
+### 6. Footer
+**File:** `components/Footer.tsx`
+**Lines:** 6-8
+
+```typescript
+<p className="text-center text-sm leading-loose text-zinc-600 dark:text-zinc-400 md:text-left">
+  Built with Next.js, Tailwind CSS & Supabase.
+</p>
+```
+
+**What to change:**
+- Customize the footer text or add your name
+
+---
+
+## 📄 Resume Setup
+
+### Option 1: Simple PDF in Public Folder (Recommended)
+1. Place your resume PDF in the `public` folder
+2. Name it `resume.pdf`
+3. The download button will automatically work!
+
+**File location:** `public/resume.pdf`
+
+### Option 2: Use Supabase Storage
+If you want to use Supabase to host your resume:
+
+1. Go to Supabase Dashboard → Storage
+2. Create a new bucket called `resumes` (make it public)
+3. Upload your PDF file
+4. Copy the public URL
+5. Update `components/About.tsx` line 42:
+   ```typescript
+   href="YOUR_SUPABASE_STORAGE_URL"
+   ```
+
+---
+
+## 🖼️ Adding Projects
+
+Add projects directly in your Supabase table:
+
+**Required fields:**
+- `title` - Project name
+- `description` - Brief description
+- `image_url` - Full URL (e.g., `https://files.catbox.moe/abc123.jpg`)
+- `project_link` - Project URL (optional)
+- `tags` - Single tag or array (optional)
+
+**Example:**
+```
+title: "E-commerce Platform"
+description: "A full-stack online store with payment integration"
+image_url: "https://files.catbox.moe/46jf13.jpeg"
+project_link: "https://myproject.com"
+tags: "React"
+```
+
+---
+
+## 🎨 Color Customization
+
+### Changing the Color Scheme
+**File:** `app/globals.css`
+**Lines:** 5-17
+
+The site uses Zinc colors by default. To change:
+1. Replace `--color-zinc-XXX` with another Tailwind color
+2. Options: `slate`, `gray`, `neutral`, `stone`, `red`, `blue`, etc.
+
+Example for Blue theme:
+```css
+--color-blue-50: #eff6ff;
+--color-blue-100: #dbeafe;
+...
+```
+
+Then update all components to use `blue` instead of `zinc`:
+- Find: `bg-zinc-`, `text-zinc-`, `border-zinc-`
+- Replace with: `bg-blue-`, `text-blue-`, `border-blue-`
+
+---
+
+## 🚀 Quick Checklist
+
+- [ ] Update hero heading and description
+- [ ] Add profile image to public/profile.jpg
+- [ ] Write your About Me paragraphs
+- [ ] Update skills list
+- [ ] Add GitHub, LinkedIn, and email links
+- [ ] Place resume.pdf in public folder
+- [ ] Add your projects to Supabase
+- [ ] Update header brand name
+- [ ] Customize footer text
+- [ ] (Optional) Change color scheme
+
+---
+
+## 💡 Tips
+
+1. **Keep it concise:** Recruiters spend ~6 seconds on a portfolio
+2. **Use action verbs:** "Built", "Designed", "Implemented"
+3. **Quantify results:** "Improved performance by 40%"
+4. **Update regularly:** Add new projects as you complete them
+5. **Test on mobile:** Most traffic comes from mobile devices
+
+---
+
+## 🆘 Need Help?
+
+If something doesn't work:
+1. Check the browser console (F12) for errors
+2. Restart the dev server: `npm run dev`
+3. Verify your Supabase credentials in `.env.local`
+4. Make sure all file paths are absolute URLs
+
+---
+
+**Last Updated:** February 2026
