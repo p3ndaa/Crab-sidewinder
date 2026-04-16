@@ -10,9 +10,7 @@ export function About() {
                 <div className="grid gap-12 lg:grid-cols-2">
                     <div className="space-y-4">
                         <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-                            I'm a passionate developer with expertise in building modern web applications.
-                            With a focus on clean code, user experience, and performance, I create digital
-                            solutions that make a difference.
+                            I'm a meow.
                         </p>
                         <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
                             My journey in software development has equipped me with a diverse skill set
